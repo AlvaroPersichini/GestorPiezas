@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+import os
+
+KEY= os.getenv('KEY')
 
 app = Flask(__name__)
-app.secret_key = "tu_clave_secreta_aqui"  # Necesaria para sesiones
+app.secret_key = KEY  # Necesaria para sesiones
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///piezas.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -21,7 +25,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)  # En producción usar hash!
+    password = db.Column(db.String(120), nullable=False)  
 
 with app.app_context():
     db.create_all()
@@ -56,6 +60,28 @@ def login():
             flash("Credenciales inválidas", "error")
 
     return render_template("login.html")
+
+@app.route("/registro", methods=["GET", "POST"])
+def registro():
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Verifica si ya existe el usuario
+        existente = Usuario.query.filter((Usuario.username == username) | (Usuario.email == email)).first()
+        if existente:
+            flash("El nombre de usuario o email ya están registrados", "error")
+            return redirect(url_for("registro"))
+
+        nuevo_usuario = Usuario(username=username, email=email, password=password)
+        db.session.add(nuevo_usuario)
+        db.session.commit()
+        flash("Registro exitoso, ahora puedes iniciar sesión", "success")
+        return redirect(url_for("login"))
+
+    return render_template("registro.html")
+
 
 # Ruta Logout
 @app.route("/logout")
