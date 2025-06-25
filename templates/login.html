@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seydel - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  
+
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <div class="contenido-principal">
+
+        <div class="contenedor">
+
+            <div class="marca">
+                <h1>Gestión de Piezas</h1><br>
+                <!--<h2>Centro de Gestión de Piezas</h2><br> -->
+
+                <!--  <p>Centro de Gestión de Piezas</p>-->
+            </div>
+
+
+            <div class="login-container">
+                <h2>Login</h2>
+                <form id="Formulario_Login" action="{{ url_for('login') }}" method="post">
+
+
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <input type="text" id="username" name="username">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <label for="email">E-Mail</label>
+                    <div class="input-group">
+                        <input type="text" id="email" name="email">
+                        <span class="error-message"></span>
+                    </div>
+
+                    <label for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password">
+                        <span class="error-message"></span>
+                    </div>
+
+
+                    <button type="submit">Entrar</button>
+
+                    <p class="registro-link"> <a href="#">Create an account</a></p>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Seydel. All rights reserved</p>
+        <p><a href="#">Política de privacidad</a> | <a href="#">Contacto</a></p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+   
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva Pieza</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nueva_pieza.css') }}">
+
+</head>
+<body>
+  <h2>Agregar Nueva Pieza</h2>
+  <form action="{{ url_for('nueva_pieza') }}" method="post">
+    <label>Código: <input type="text" name="codigo" required></label><br>
+    <label>Descripción: <input type="text" name="descripcion" required></label><br>
+    <label>Categoría: <input type="text" name="categoria"></label><br>
+    <label>Stock: <input type="number" name="stock" required></label><br>
+    <label>Estado: <input type="text" name="estado"></label><br>
+    <button type="submit">Guardar</button>
+  </form>
+  <br>
+  <a href="{{ url_for('portal') }}">← Volver</a>
+</body>
+</html>
