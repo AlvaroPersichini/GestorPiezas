@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Centro de Gestión de Piezas</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/portal.css') }}">
 </head>
+
 <body>
 
   <header>
 
-    <h1>Centro de Gestión de Piezas</h1>
+    <h1>Gestión de Piezas</h1>
     <p>Inventario y documentación técnica de componentes - SEYDEL</p>
-
     <div class="user-info">
-   
-       Usuario: <strong>{{ usuario }}</strong> | <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+      Usuario: <strong>{{ usuario }}</strong> | <a href="{{ url_for('logout') }}">Cerrar sesión</a>
     </div>
 
   </header>
@@ -33,23 +33,23 @@
           <th>Código</th>
           <th>Descripción</th>
           <th>Categoría</th>
-          <th>Stock</th>
-          <th>Estado</th>
-          <th>Ficha Técnica</th>
+          <th>Fab/Com</th>
+          <th>MOD 3D</th>
           <th>Eliminar</th>
+      
         </tr>
       </thead>
       <tbody>
         {% for pieza in piezas %}
         <tr>
-          <td>{{ pieza.codigo }}</td>
+          <td>{{ pieza.codigo_interno }}</td>
+          <td>{{ pieza.nombre }}</td>
           <td>{{ pieza.descripcion }}</td>
-          <td>{{ pieza.categoria }}</td>
-          <td>{{ pieza.stock }}</td>
-          <td>{{ pieza.estado }}</td>
+          <td>{{ pieza.cantidad }}</td>
           <td><button class="download-btn">Descargar</button></td>
           <td>
-            <form action="{{ url_for('eliminar_pieza', pieza_id=pieza.id) }}" method="post" onsubmit="return confirm('¿Eliminar esta pieza?');">
+            <form action="{{ url_for('eliminar_pieza', pieza_id=pieza.id) }}" method="post"
+              onsubmit="return confirm('¿Eliminar esta pieza?');">
               <button class="delete-btn" type="submit">Eliminar</button>
             </form>
           </td>
@@ -60,4 +60,5 @@
   </div>
 
 </body>
+
 </html>
