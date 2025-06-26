@@ -33,9 +33,9 @@
           <th>Código</th>
           <th>Descripción</th>
           <th>Categoría</th>
-          <th>Fab/Com</th>
-          <th>MOD 3D</th>
-          <th>Eliminar</th>
+          <th>Archivo</th>
+          <th> ---</th>
+     
       
         </tr>
       </thead>
@@ -45,7 +45,7 @@
           <td>{{ pieza.codigo_interno }}</td>
           <td>{{ pieza.nombre }}</td>
           <td>{{ pieza.descripcion }}</td>
-          <td>{{ pieza.cantidad }}</td>
+     
           <td><button class="download-btn">Descargar</button></td>
           <td>
             <form action="{{ url_for('eliminar_pieza', pieza_id=pieza.id) }}" method="post"

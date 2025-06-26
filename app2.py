@@ -29,7 +29,7 @@ def portal():
     db = get_db()
     cursor = db.cursor(dictionary=True)
     cursor.execute("""
-        SELECT p.id, p.nombre AS nombre, p.descripcion, p.codigo_interno, up.cantidad
+        SELECT p.id, p.nombre AS nombre, p.descripcion, p.codigo_interno
         FROM piezas p
         JOIN usuario_piezas up ON p.id = up.pieza_id
         WHERE up.usuario_id = %s
@@ -55,6 +55,7 @@ def login():
         if user:
             session["user_id"] = user["id"]
             session["username"] = user["nombre"]
+            session["is_admin"] = user["is_admin"]  
             flash("Inicio de sesión exitoso", "success")
             return redirect(url_for("portal"))
         else:
@@ -102,7 +103,7 @@ def nueva_pieza():
         nombre = request.form["codigo"]
         descripcion = request.form["descripcion"]
         codigo_interno = request.form["categoria"]
-        cantidad = int(request.form["stock"])
+      
 
         db = get_db()
         cursor = db.cursor()
@@ -120,17 +121,36 @@ def nueva_pieza():
             pieza_id = cursor.lastrowid
 
         # Relacionar con el usuario
+
         cursor.execute("""
-            INSERT INTO usuario_piezas (usuario_id, pieza_id, cantidad)
-            VALUES (%s, %s, %s)
-            ON DUPLICATE KEY UPDATE cantidad = cantidad + %s
-        """, (session.get("user_id"), pieza_id, cantidad, cantidad))
+             INSERT INTO usuario_piezas (usuario_id, pieza_id)
+             VALUES (%s, %s)
+            """, (session.get("user_id"), pieza_id))
+        
         db.commit()
+
         cursor.close()
 
         return redirect(url_for("portal"))
 
     return render_template("nueva_pieza.html")
+
+
+@app.route("/admin")
+def admin_panel():
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    if not session.get("is_admin"):
+        return "Acceso denegado", 403
+
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT id, nombre, email FROM usuarios")
+    usuarios = cursor.fetchall()
+    cursor.close()
+
+    return render_template("admin.html", usuarios=usuarios)
 
 @app.route("/eliminar/<int:pieza_id>", methods=["POST"])
 def eliminar_pieza(pieza_id):

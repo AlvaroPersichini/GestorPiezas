@@ -1,82 +1,190 @@
-/* Reset básico */
+/* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estilo general del body */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f8fc;
-  color: #333;
-  padding: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #003366 30%, #0055aa 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Encabezado */
-h2 {
-  color: #004080;
-  margin-bottom: 20px;
+/* Contenido centrado */
+.contenido-principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
-/* Formulario */
-form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 64, 128, 0.1);
-  max-width: 500px;
-  margin-bottom: 20px;
+/* Contenedor general */
+.contenedor {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
 }
 
-/* Etiquetas y campos */
+/* Marca */
+.marca h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.marca p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+/* Mensaje de bienvenida */
+.bienvenida {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #f0f0f0;
+}
+
+/* Caja de login */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
 label {
-  display: block;
-  margin-bottom: 15px;
-  color: #004080;
-  font-weight: bold;
+    display: block;
+    margin-top: 1rem;
+    font-weight: 500;
 }
 
 input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #c0d4f1;
-  border-radius: 8px;
-  font-size: 14px;
-  background-color: #f0f6ff;
-  transition: border-color 0.3s;
+input[type="password"] {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0.3rem;
+    font-size: 1rem;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
-  outline: none;
-  border-color: #0070c9;
+button {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.6rem;
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-/* Botón de enviar */
-button[type="submit"] {
-  background-color: #0070c9;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+button:hover {
+    background-color: #e1e1e1;
 }
 
-button[type="submit"]:hover {
-  background-color: #005fa3;
+/* Enlace de registro */
+.registro-link {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
-/* Enlace de volver */
-a {
-  color: #004080;
-  text-decoration: none;
-  font-size: 14px;
+.registro-link a {
+    color: #ffffff;
+    text-decoration: underline;
 }
 
-a:hover {
-  text-decoration: underline;
+.registro-link a:hover {
+    color: #ffcc00;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #ffcc00;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+    display: none;
+}
+
+.error-message-show {
+    display: block;
+     color: red;
+}
+
+.success-icon {
+    color:rgb(82, 231, 45);
+}
+
+
+
+input.error {
+    border: 1px solid red;
+}
+
+input.success {
+    border: 1px solid green;
+}
+
+
+.input-group {
+    position: relative;
+    width: 100%;
+    display: block; 
+}
+
+.input-group input {
+    width: 100%;
+    padding-right: 30px;
+    box-sizing: border-box;
+    display: block;
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+.input-group:has(.success-icon) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.input-group:has(.success-icon) input {
+    width: 100%;
+    flex: none; 
 }

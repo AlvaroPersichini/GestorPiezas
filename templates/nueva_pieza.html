@@ -4,19 +4,36 @@
   <meta charset="UTF-8">
   <title>Nueva Pieza</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/nueva_pieza.css') }}">
-
 </head>
 <body>
-  <h2>Agregar Nueva Pieza</h2>
-  <form action="{{ url_for('nueva_pieza') }}" method="post">
-    <label>Código: <input type="text" name="codigo" required></label><br>
-    <label>Descripción: <input type="text" name="descripcion" required></label><br>
-    <label>Categoría: <input type="text" name="categoria"></label><br>
-    <label>Stock: <input type="number" name="stock" required></label><br>
-    <label>Estado: <input type="text" name="estado"></label><br>
-    <button type="submit">Guardar</button>
-  </form>
-  <br>
-  <a href="{{ url_for('portal') }}">← Volver</a>
+  <div class="contenido-principal">
+    <div class="contenedor">
+      <div class="marca">
+        <h1>Gestor de Piezas</h1>
+        <p>Registro de Nuevas Piezas</p>
+      </div>
+      <div class="login-container">
+        <h2>Agregar Nueva Pieza</h2>
+        <form action="{{ url_for('nueva_pieza') }}" method="post">
+          <label for="codigo">Código:</label>
+          <input type="text" name="codigo" id="codigo" required>
+
+          <label for="descripcion">Descripción:</label>
+          <input type="text" name="descripcion" id="descripcion" required>
+
+          <label for="categoria">Categoría:</label>
+          <input type="text" name="categoria" id="categoria">
+
+          <label for="estado">Estado:</label>
+          <input type="text" name="estado" id="estado">
+
+          <button type="submit">Guardar Pieza</button>
+        </form>
+        <div class="registro-link">
+          <a href="{{ url_for('portal') }}">← Volver al portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
