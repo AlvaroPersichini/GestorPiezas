@@ -1,0 +1,44 @@
+"""
+================================================================================
+DOCUMENTACIÓN: Uso correcto de `if __name__ == '__main__'` y efecto de app.run()
+================================================================================
+
+Este archivo contiene una aplicación Flask. Es importante seguir esta estructura
+para asegurar un comportamiento correcto y predecible al ejecutarla o importarla.
+
+FUNCIONES DEL BLOQUE `if __name__ == '__main__':`
+-------------------------------------------------
+1. Impide que `app.run()` se ejecute automáticamente si el archivo es importado
+   desde otro módulo. Esto permite reutilizar el archivo sin efectos secundarios.
+
+2. Garantiza que `app.run()` se ejecute únicamente cuando este archivo sea 
+   ejecutado directamente con `python archivo.py`, y lo hace *solo después* 
+   de que todo el archivo fue leído y procesado.
+
+COMPORTAMIENTO DE `app.run()`
+------------------------------
+- Ejecutar `app.run()` inicia el servidor web de Flask y entra en un bucle 
+  bloqueante que espera peticiones. Mientras ese bucle está activo, el programa
+  queda detenido y no ejecuta ninguna línea posterior.
+
+- Por eso, cualquier código colocado *después* de `app.run()` no se ejecutará 
+  hasta que el servidor se detenga (por ejemplo, al presionar Ctrl+C).
+
+DEFINICIÓN VS EJECUCIÓN
+------------------------
+- Las definiciones de funciones y clases (por ejemplo, con `def` o `class`) 
+  no se ejecutan en el momento. Solo se cargan en memoria. Por eso pueden estar 
+  después de `app.run()` sin problema.
+
+- En cambio, líneas de código ejecutable (como `print()`, llamadas a funciones,
+  asignaciones, etc.) *sí se ejecutan inmediatamente* cuando se llega a ellas, 
+  a menos que estén dentro de una función o condicional.
+
+RECOMENDACIÓN
+-------------
+Siempre envolver `app.run()` dentro del bloque 
+`if __name__ == '__main__':` para asegurar modularidad, control de ejecución y
+comportamiento correcto tanto en desarrollo como en producción.
+
+================================================================================
+"""

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 
 KEY= os.getenv('KEY')
@@ -10,6 +10,8 @@ app.secret_key = KEY  # Necesaria para sesiones
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///piezas.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+
 
 # Modelo Pieza (igual que antes)
 class Pieza(db.Model):
@@ -131,6 +133,27 @@ def eliminar_pieza(pieza_id):
     db.session.delete(pieza)
     db.session.commit()
     return redirect(url_for("portal"))
+
+
+
+
+#---------------------------------------------------------------------------------------
+# Función doble del if __name__ == '__main__':
+
+# 1. Evita que app.run() se ejecute si el archivo es importado
+# Si otro archivo hace import app, entonces:
+# __name__ no es '__main__', sino 'app'
+# Por lo tanto, el bloque no se ejecuta
+# Esto evita que se levante el servidor automáticamente al importar
+# Esto permite usar tu archivo como módulo reutilizable
+
+# 2. Hace que app.run() se ejecute solo después de que todo el archivo fue leído y cargado
+# Aunque el if esté “antes” en el archivo, Python no lo ejecuta de inmediato
+# Python primero lee y ejecuta todo el archivo
+# Define funciones, modelos, rutas, etc.
+# Recién al final, evalúa y ejecuta el bloque if
+# Esto asegura que el servidor Flask arranque solo cuando todo ya está preparado
+#---------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
     app.run(debug=True)
