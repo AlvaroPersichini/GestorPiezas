@@ -127,6 +127,11 @@ def close_db(exception):
 
 
 
+@app.route("/")
+def index():
+    return redirect(url_for("login"))
+
+
 
 # Portal
 #---------------------------------------------------------------------------------
