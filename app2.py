@@ -166,8 +166,14 @@ def login():
       # aca va a tomar los valores de los campos del formulario
     if request.method == "POST":
 
+        
+        print("📥 Recibido POST desde formulario")
+
         username = request.form["username"]
         password = request.form["password"]
+
+        print("📌 Username:", username)
+        print("📌 Password:", password)
 
         db = get_db()
 
@@ -184,6 +190,8 @@ def login():
 
       # fetchone()-------------------------------------
         user = cursor.fetchone()
+
+         print("🔍 Resultado SQL:", user)
       # Esta línea se usa después de ejecutar una consulta SQL con un cursor 
       # cursor.fetchone() recupera una sola fila del resultado de la consulta SQL.
       # Devuelve la primera fila pendiente del resultado como una tupla (o None si no hay más filas).
@@ -196,8 +204,10 @@ def login():
             session["username"] = user["nombre"]
             session["is_admin"] = user["is_admin"]  
             flash("Inicio de sesión exitoso", "success")
+              print("✅ Login OK, redirigiendo a portal")
             return redirect(url_for("portal"))
         else:
+             print("❌ Credenciales inválidas")
             flash("Credenciales inválidas", "error")
 
     return render_template("login.html")
