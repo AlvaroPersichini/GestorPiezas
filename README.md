@@ -1,6 +1,9 @@
 # Centro de Gestión de Piezas
 
-Este proyecto es una aplicación web simple para la gestión de piezas, desarrollada con Flask.
+Este proyecto es una aplicación web simple para la gestión de piezas, desarrollada con Python/Flask.
+
+Esta desplegada en:  
+web-production-c7e6.up.railway.app
 
 ## Características
 
@@ -16,3 +19,5 @@ Este proyecto es una aplicación web simple para la gestión de piezas, desarrol
 - HTML/CSS
 - SQLite
 - SQLAlchemy
+
+
