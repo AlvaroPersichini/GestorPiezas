@@ -170,7 +170,28 @@ def login():
 
        
 
-        db = get_db()
+
+ import traceback
+ # dentro de tu login():
+ try:
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM usuarios WHERE nombre=%s AND contrasena=%s", (username, password))
+    user = cursor.fetchone()
+    cursor.close()
+ except Exception as e:
+    print("ERROR EN LOGIN:")
+    traceback.print_exc()
+    flash("Error interno al iniciar sesión.", "error")
+    return render_template("login.html")
+
+
+
+ db = get_db()
+
+
+
+
 
 
      # Obs. los nombres de las variables que se coresponden con las columnas de la BD, conviene 
