@@ -163,22 +163,22 @@ def portal():
 def login():
 
       # "request" es un objeto global de Flask que representa la solicitud HTTP que hizo el navegador
+      # aca va a tomar los valores de los campos del formulario
     if request.method == "POST":
 
-        # aca accede a los campos del formulario para poder validarlos
-        email = request.form["email"]
+        username = request.form["username"]
         password = request.form["password"]
-
-
 
         db = get_db()
 
 
+     # Obs. los nombres de las variables que se coresponden con las columnas de la BD, conviene 
+     # que tengan el mismo nombre, por ejemplo: "username" y "nombre". esots dos ser los dos "username" 
 
         # Objeto que se obtiene a partir de la conexión a la base de datos.
         # Permite ejecutar consultas SQL (SELECT, INSERT, etc.) y acceder a los resultados
         cursor = db.cursor(dictionary=True) # acá instancia el cursor, que es el objeto mapper.
-        cursor.execute("SELECT * FROM usuarios WHERE email=%s AND contrasena=%s", (email, password))
+        cursor.execute("SELECT * FROM usuarios WHERE nombre=%s AND contrasena=%s", (username, password))
 
 
 
