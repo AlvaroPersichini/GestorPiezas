@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import mysql.connector
 from dotenv import load_dotenv
 import os
+import traceback
 
 
 # "request":
@@ -171,7 +172,7 @@ def login():
        
 
 
- import traceback
+
  # dentro de tu login():
  try:
     db = get_db()
