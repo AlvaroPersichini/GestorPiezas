@@ -212,11 +212,6 @@ def login():
     return render_template("login.html")
 #---------------------------------------------------------------------------------
 
-
-
-
-
-
 # Registro 
 # Acá procesa el formulario de registro, crea y almacena en BD el nuevo usuario
 #---------------------------------------------------------------------------------
