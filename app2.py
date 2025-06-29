@@ -70,8 +70,7 @@ load_dotenv()
 app = Flask(__name__)
 
 
-port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port)
+
 
 
 
@@ -101,11 +100,22 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # que representa un canal abierto de comunicación entre tu aplicación y el servidor de base de datos MySQL.
 def get_db():
     if 'db' not in g:
-        g.db = mysql.connector.connect(host="localhost",  #crea un objeto de tipo conexión (MySQLConnection) 
-                                       user="alvaro", 
-                                       password="apersichini86", 
-                                       database="GestorPiezas")
+ 
+
+#crea un objeto de tipo conexión (MySQLConnection)
+    g.db = mysql.connector.connect(
+    host=os.environ.get("DB_HOST"),
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASS"),
+    database=os.environ.get("DB_NAME")
+)
     return g.db
+
+
+# g.db = mysql.connector.connect(host="localhost",  #crea un objeto de tipo conexión (MySQLConnection) 
+                                   #    user="alvaro", 
+                                   #    password="apersichini86", 
+                                   #    database="GestorPiezas")
 
 
  #--------------------------------
@@ -345,7 +355,9 @@ def eliminar_pieza(pieza_id):
 # Flask levanta el servidor
 # --------------------------------------------------------------------------------------
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
 # Este bloque asegura que el servidor Flask (app.run) solo se inicie
 # cuando este archivo se ejecuta directamente con `python archivo.py`.
 # Si este archivo se importa desde otro módulo, este bloque NO se ejecuta,
