@@ -98,16 +98,15 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # lo que estás haciendo es crear un objeto de tipo conexión (MySQLConnection) 
 # Es una instancia de una clase provista por el conector mysql.connector, 
 # que representa un canal abierto de comunicación entre tu aplicación y el servidor de base de datos MySQL.
+#crea un objeto de tipo conexión (MySQLConnection)
 def get_db():
     if 'db' not in g:
- 
 
-#crea un objeto de tipo conexión (MySQLConnection)
-    g.db = mysql.connector.connect(
-    host=os.environ.get("DB_HOST"),
-    user=os.environ.get("DB_USER"),
-    password=os.environ.get("DB_PASS"),
-    database=os.environ.get("DB_NAME")
+        g.db = mysql.connector.connect(
+        host=os.environ.get("DB_HOST"),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASS"),
+        database=os.environ.get("DB_NAME")
 )
     return g.db
 
