@@ -261,9 +261,9 @@ def nueva_pieza():
         return redirect(url_for("login"))
 
     if request.method == "POST": # Evalúa si la solicitud que llegó al servidor es tipo "POST"
-        codigo_interno = request.form["codigo"]
+        nombre = request.form["codigo"]
         descripcion = request.form["descripcion"]
-        categoria = request.form["categoria"]
+        codigo_interno = request.form["categoria"]
         # llama a la base de datos y arma el objeto db y el objeto cursor, que es mapper
         db = get_db()
         cursor = db.cursor()
@@ -285,7 +285,7 @@ def nueva_pieza():
             pieza_id = pieza[0] # accede al primer valor de la tupla, que es el ID de la pieza
            
         else:
-            cursor.execute("INSERT INTO piezas (nombre, descripcion, categoria) VALUES (%s, %s, %s)", (codigo_interno, descripcion, categoria))
+            cursor.execute("INSERT INTO piezas (nombre, descripcion, codigo_interno) VALUES (%s, %s, %s)", (nombre, descripcion, codigo_interno))
             db.commit()
             pieza_id = cursor.lastrowid
 
