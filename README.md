@@ -17,7 +17,4 @@ web-production-c7e6.up.railway.app
 
 - Python + Flask
 - HTML/CSS
-- SQLite
-- SQLAlchemy
-
-
+- MySQL
