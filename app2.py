@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import mysql.connector
 from dotenv import load_dotenv
 import os
-import traceback
 
 
 # "request":
@@ -60,6 +59,8 @@ import traceback
 # ----------------------------------
 # Cargar variables del archivo .env
 # ----------------------------------
+# esto es para local, porque para el servidor de producción ya estan seteadas las variables de entorno
+# El archivo .env contiene variables de entorno que se cargan al inicio de la aplicación.
 load_dotenv()  
 # Lee el archivo .env que está en la raíz del proyecto. Toma cada línea del tipo CLAVE=valor.
 # Agrega esas claves y valores a os.environ, que es un diccionario especial de variables de entorno de Python.
