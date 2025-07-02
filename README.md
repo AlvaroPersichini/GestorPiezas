@@ -11,7 +11,7 @@ web-production-c7e6.up.railway.app
 - Visualización de piezas en tabla
 - Funcionalidad para agregar y eliminar piezas
 - Interfaz web con HTML + CSS
-- Base de datos SQLite
+- Base de datos mySQL
 
 ## Tecnologías utilizadas
 
