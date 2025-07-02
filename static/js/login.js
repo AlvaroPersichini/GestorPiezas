@@ -61,7 +61,7 @@ function validarPassword(password) {
         return false;
     }
     else if (password.length <= 6) {
-        mostrarError(errorPassword, "Mas de seis caraceres")
+        mostrarError(errorPassword, "Mas de seis caracteres")
         return false;
     }
     else {
@@ -88,8 +88,6 @@ function mostrarExito(elemento, mensaje) {
 
 
 
-
-
 // Al cambiar el contenido del input, se valida en tiempo real
 document.getElementById("username").addEventListener("input", function () {
     const valor = this.value.trim();
@@ -106,20 +104,3 @@ document.getElementById("password").addEventListener("input", function () {
 });
 
 
-
-
-
-
-
-
-//  elemento.previousElementSibling.classList.remove('error');
-//  elemento.previousElementSibling.classList.add('success');
-
-
-//   elemento.previusElementSibling.classList.add("error");
-//   elemento.previusElementSibling.classList.remove("success");
-
-
-
-// const errorUsername = document.querySelector("#username+.error-message")
-//  const errorUsername = document.querySelector("#username").parentElement.querySelector(".error-message, .error-message-show, .success-icon");
