@@ -285,7 +285,7 @@ def nueva_pieza():
             pieza_id = pieza[0] # accede al primer valor de la tupla, que es el ID de la pieza
            
         else:
-            cursor.execute("INSERT INTO piezas (nombre, descripcion, codigo_interno) VALUES (%s, %s, %s)", (codigo_interno, descripcion, categoria))
+            cursor.execute("INSERT INTO piezas (nombre, descripcion, categoria) VALUES (%s, %s, %s)", (codigo_interno, descripcion, categoria))
             db.commit()
             pieza_id = cursor.lastrowid
 

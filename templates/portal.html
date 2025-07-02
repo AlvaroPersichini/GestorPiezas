@@ -42,8 +42,13 @@
       <tbody>
         {% for pieza in piezas %}
         <tr>
-          <td>{{ pieza.codigo_interno }}</td>
+         <!--  <td>{{ pieza.codigo_interno }}</td>
           <td>{{ pieza.nombre }}</td>
+          <td>{{ pieza.descripcion }}</td> -->
+
+
+          <td>{{pieza.nombre }}</td>
+          <td>{{pieza.codigo_interno}}</td>
           <td>{{ pieza.descripcion }}</td>
      
           <td><button class="download-btn">Descargar</button></td>
