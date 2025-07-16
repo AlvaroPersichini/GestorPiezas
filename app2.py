@@ -48,8 +48,8 @@ import os
 # Los datos se eliminan al cerrar el navegador o con session.clear(), 
 # a menos que se configure un tiempo de expiración.
 # Ejemplo de uso:
-#   session['usuario'] = 'alvaro'
-#   usuario = session.get('usuario')
+# - session['usuario'] = 'alvaro'
+# - usuario = session.get('usuario')
 # ----------------------------------------------
 
 
@@ -60,10 +60,14 @@ import os
 # Cargar variables del archivo .env
 # ----------------------------------
 # esto es para local, porque para el servidor de producción ya estan seteadas las variables de entorno
+# load_dotenv() no rompe nada si no hay .env, simplemente no carga nada.
+# Por eso no hace falta diferenciar si estás local o en producción, el código puede ser el mismo.
 # El archivo .env contiene variables de entorno que se cargan al inicio de la aplicación.
 load_dotenv()  
 # Lee el archivo .env que está en la raíz del proyecto. Toma cada línea del tipo CLAVE=valor.
 # Agrega esas claves y valores a os.environ, que es un diccionario especial de variables de entorno de Python.
+# .env es un archivo de texto que contiene pares clave-valor, que esta agregado al gitignore, entonces no se sube al repositorio.
+
 
 
 #------------------------
@@ -72,17 +76,15 @@ load_dotenv()
 app = Flask(__name__)
 
 
-
-
 #--------------------------------------------------
 # Busca dentro de os.environ la clave "SECRET_KEY"
 #--------------------------------------------------
+
 app.secret_key = os.environ.get("SECRET_KEY") 
 # app.secret_key , "secret_key" es un atributo del objeto app
 # Busca dentro de os.environ la clave "SECRET_KEY". Devuelve su valor (por ejemplo, 'ALVARO').
 # Lo asigna a app.secret_key, que Flask usa para firmar las cookies de sesión
  
-
 
 
 
@@ -381,8 +383,3 @@ if __name__ == '__main__':
 # --------------------------------------------------------------------------------------
 # debug=True es para hacer cambio con el servidor corriendo y actualizando la pagina
 # se van viendo los cambios sin tener que reiniciar todo.
-
-
-
-
-
