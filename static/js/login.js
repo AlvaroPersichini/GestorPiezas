@@ -11,7 +11,7 @@ document.getElementById("Formulario_Login").addEventListener('submit', function 
     const passwordValido = validarPassword(password);
 
     if (nombreValido && emailValido && passwordValido) {
-        this.submit(); 
+        this.submit();
     }
 
 });
